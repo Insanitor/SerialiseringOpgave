@@ -17,11 +17,11 @@ namespace SerialiseringOpgave.Model
         public double Price { get; private set; }
         public double VAT { get; private set; }
 
-
-        public ShoppingItem()
-        {
-        }
-
+        /// <summary>
+        /// Constructor for a Shopping Item
+        /// </summary>
+        /// <param name="name">Name of the Item</param>
+        /// <param name="price">Price of the Item</param>
         public ShoppingItem(string name, double price)
         {
             Name = name;

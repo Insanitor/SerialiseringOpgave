@@ -42,7 +42,7 @@ namespace SerialiseringOpgave.Model
         /// <summary>
         /// Saves a cart
         /// </summary>
-        /// <param name="cart"></param>
+        /// <param name="cart">The cart to save</param>
         public static void SaveToFile(ShoppingCart cart)
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -86,7 +86,7 @@ namespace SerialiseringOpgave.Model
         /// <summary>
         /// Adds an item to the Shopping Cart
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">The item to add to the cart</param>
         public void AddItem(ShoppingItem item)
         {
             for (int i = 0; i < cartItems.Length - 1; i++)
@@ -130,6 +130,10 @@ namespace SerialiseringOpgave.Model
             Console.WriteLine("Number of Items in Cart: " + counter + "\n");
         }
 
+        /// <summary>
+        /// Run when a Shopping Cart is Deserialised
+        /// </summary>
+        /// <param name="sender">404 Explaination not found</param>
         public void OnDeserialization(object sender)
         {
             foreach (ShoppingItem item in cartItems)
