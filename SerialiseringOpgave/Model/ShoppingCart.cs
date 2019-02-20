@@ -46,9 +46,9 @@ namespace SerialiseringOpgave.Model
 
 
         /// <summary>
-        /// Saves a cart
+        /// Saves a Shopping Cart
         /// </summary>
-        /// <param name="cart">The cart to save</param>
+        /// <param name="cart">The Shopping Cart to save</param>
         public static void SaveToFile(ShoppingCart cart)
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -77,9 +77,9 @@ namespace SerialiseringOpgave.Model
             FileStream fs = new FileStream($"ShoppingCart.dat", FileMode.Open);
             try
             {
-                ShoppingCart sc = (ShoppingCart)bf.Deserialize(fs);
+                var deserializedData = bf.Deserialize(fs);
                 fs.Close();
-                return sc;
+                return deserializedData as ShoppingCart;
             }
             catch (Exception ex)
             {
@@ -90,7 +90,7 @@ namespace SerialiseringOpgave.Model
         }
 
         /// <summary>
-        /// Adds an item to the Shopping Cart
+        /// Attempts to adds an item to the Shopping Cart,
         /// </summary>
         /// <param name="item">The item to add to the cart</param>
         public void AddItem(ShoppingItem item)
@@ -110,7 +110,7 @@ namespace SerialiseringOpgave.Model
         }
 
         /// <summary>
-        /// Clears the Cart of Items
+        /// Clears the Shopping Cart of Items
         /// </summary>
         public void RemoveItems()
         {
@@ -118,7 +118,7 @@ namespace SerialiseringOpgave.Model
         }
 
         /// <summary>
-        /// Prints all the items in the Cart
+        /// Prints all the items in the Shopping Cart
         /// </summary>
         public void PrintItems()
         {
