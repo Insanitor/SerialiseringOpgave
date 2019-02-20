@@ -13,7 +13,6 @@ namespace SerialiseringOpgave.Model
     [Serializable]
     class ShoppingCart : IDeserializationCallback
     {
-        //List<ShoppingItem> cartItems = new List<ShoppingItem>();
         ShoppingItem[] cartItems;
 
         [NonSerialized] private double totalPrice;
@@ -34,7 +33,9 @@ namespace SerialiseringOpgave.Model
         }
 
 
-        //Lonely, I'm Mr. Lonely... I got no purpose, in this CoooOOOoooOOooode
+        /// <summary>
+        /// A very lonely Method with no purpose
+        /// </summary>
         public void GetItems() { }
 
 

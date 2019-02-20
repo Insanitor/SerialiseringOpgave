@@ -22,7 +22,8 @@ namespace SerialiseringOpgave
             Console.WriteLine(
                 "##################################\n" +
                 "###  Print Items & Save Cart   ###\n" +
-                "##################################\n"); cart.PrintItems();
+                "##################################\n");
+            cart.PrintItems();
             ShoppingCart.SaveToFile(cart);
             Console.ReadLine();
             Console.Clear();
@@ -43,6 +44,8 @@ namespace SerialiseringOpgave
             cart = ShoppingCart.LoadFromFile();
             cart.PrintItems();
             Console.ReadLine();
+
+            cart.GetItems();
         }
     }
 }
