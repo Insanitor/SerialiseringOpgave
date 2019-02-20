@@ -15,9 +15,15 @@ namespace SerialiseringOpgave.Model
     {
         ShoppingItem[] cartItems;
 
+        public ShoppingItem[] CartItem
+        {
+            get { return cartItems; }
+            private set { cartItems = value; }
+        }
+
         [NonSerialized] private double totalPrice;
 
-        public double TotalPrice
+        private double TotalPrice
         {
             get { return totalPrice; }
             set { totalPrice = value; }
@@ -89,14 +95,18 @@ namespace SerialiseringOpgave.Model
         /// <param name="item">The item to add to the cart</param>
         public void AddItem(ShoppingItem item)
         {
-            for (int i = 0; i < cartItems.Length - 1; i++)
-            {
-                if (cartItems[i] == null)
+            for (int i = 0; i <= cartItems.Length; i++)
+                if (i != cartItems.Length)
                 {
-                    cartItems[i] = item;
-                    break;
+                    if (cartItems[i] == null && i < cartItems.Length)
+                    {
+                        cartItems[i] = item;
+                        Console.WriteLine("Added " + item.Name + " to the Shopping Cart");
+                        break;
+                    }
                 }
-            }
+                else
+                    Console.WriteLine("Cart is full!");
         }
 
         /// <summary>
@@ -104,10 +114,7 @@ namespace SerialiseringOpgave.Model
         /// </summary>
         public void RemoveItems()
         {
-            for (int i = 0; i < cartItems.Length - 1; i++)
-            {
-                cartItems[i] = null;
-            }
+            cartItems = new ShoppingItem[cartItems.Length];
         }
 
         /// <summary>
@@ -123,7 +130,7 @@ namespace SerialiseringOpgave.Model
                     counter++;
                     Console.WriteLine("Product ID: " + item.ItemId + "\n" +
                         "Product: " + item.Name + "\n" +
-                        "Price ex. VAT: " + (item.Price * ((item.VAT / 100) + 1)) + "$\n" +
+                        "Price: " + item.Price + "$\n" +
                         "VAT: " + ((item.Price * ((item.VAT / 100) + 1)) - item.Price) + "$" + "\n");
                 }
             }
@@ -139,7 +146,7 @@ namespace SerialiseringOpgave.Model
             foreach (ShoppingItem item in cartItems)
             {
                 if (item != null)
-                    TotalPrice += item.Price;
+                    TotalPrice += (item.Price * ((item.VAT / 100) + 1));
             }
             Console.WriteLine("Total Price of the Loaded Cart: " + TotalPrice + "$\n");
         }
